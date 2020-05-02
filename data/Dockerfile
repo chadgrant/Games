@@ -1,0 +1,1 @@
+FROM playstudios/mongo:3.4

@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+
+   games:
+     build:
+       context: ./
+       args:
+         - ps_feed=${PS_FEED}
+         - application=games
+         - friendly="Games API"
+         - build_hash=${HASH:-localbuild_hashmissing}
+         - build_user=${BUILD_USER:-$USER}
+         - build_branch=${BRANCH:-nobranch}
+         - build_number=${BUILD_NUMBER:-1.0.0}
+         - build_group=${BUILD_GROUP:-nogroupspecified}
+         - build_configuration=${BUILD_CONFIGURATION:-MVM-Release}
+         - build_project=${BUILD_PROJECT:-GameStudio.Games.WebApi}
+     image: chadgrant/games:${BUILD_NUMBER:-1.0.0}
+     container_name: games
+     restart: unless-stopped
+     depends_on:
+       - mongo
+     ports:
+       - 5001:80
+     environment:
+       GAMES_MONGO__CONNECTIONSTRING: "mongodb://docker:password@mongo:27017/games?serverSelectionTimeoutMS=5000&connectTimeoutMS=5000&appName=games&authSource=admin"
+       GAMES_MONGOHEALTHCHECK__CONNECTIONSTRING: "mongodb://docker:password@mongo:27017/games?serverSelectionTimeoutMS=5000&connectTimeoutMS=5000&appName=gamesHealthCheck&authSource=admin"
+  
+   tests:
+     build:
+       context: ./
+       dockerfile: tests/Dockerfile
+       args:
+         - ps_feed=${PS_FEED}
+         - application=games_test
+         - friendly="Games API Test"
+         - test_project=${TEST_PROJECT:-GameStudio.Games.Tests/GameStudio.Games.Tests.csproj}
+         - build_configuration=${BUILD_CONFIGURATION:-MVM-Debug}
+     image: chadgrant/games_test:${BUILD_NUMBER:-1.0.0}
+     container_name: games_test
+     depends_on:
+       - games
+       - mongo
+     environment:
+       GAMES_MONGO__CONNECTIONSTRING: "mongodb://docker:password@mongo:27017/games?serverSelectionTimeoutMS=5000&connectTimeoutMS=5000&appName=games&authSource=admin"

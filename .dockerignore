@@ -1,0 +1,9 @@
+*/TestResults/*
+**/obj/*
+**/out/*
+**/packages/*
+**/bin/*
+**/.vs/*
+launchSettings.json
+*DS_Store
+*.user

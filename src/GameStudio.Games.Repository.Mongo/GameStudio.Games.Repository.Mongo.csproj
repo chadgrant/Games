@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>GameStudio.Games.Repository.Mongo</RootNamespace>
+    <AssemblyName>GameStudio.Games.Repository.Mongo</AssemblyName>
+    <Configurations>MVM-Debug;MVM-Release;PSA-Debug;PSA-Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'MVM-Debug'">
+    <DefineConstants>DEBUG;TRACE;AWS;MVM</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'MVM-Release'">
+    <DefineConstants>AWS;MVM</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'PSA-Debug'">
+    <DefineConstants>DEBUG;TRACE;AZURE;PSA</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'PSA-Release'">
+    <DefineConstants>AZURE;PSA</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GameStudio-Net\Repositories\GameStudio.Repository.Document.Mongo\GameStudio.Repository.Document.Mongo.csproj" />
+    <ProjectReference Include="..\GameStudio.Games\GameStudio.Games.csproj" />
+  </ItemGroup>
+
+</Project>

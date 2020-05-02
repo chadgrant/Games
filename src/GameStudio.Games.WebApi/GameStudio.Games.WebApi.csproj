@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AspNetCoreHostingModel>inprocess</AspNetCoreHostingModel>
+    <AssemblyName>GameStudio.Games.WebApi</AssemblyName>
+    <RootNamespace>GameStudio.Games.WebApi</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Configurations>MVM-Debug;MVM-Release;PSA-Debug;PSA-Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'MVM-Debug'">
+    <DefineConstants>DEBUG;TRACE;AWS;MVM</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'MVM-Release'">
+    <DefineConstants>AWS;MVM</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'PSA-Debug'">
+    <DefineConstants>DEBUG;TRACE;AZURE;PSA</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'PSA-Release'">
+    <DefineConstants>AZURE;PSA</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(DefineConstants.Contains(AZURE))">
+    <PackageReference Include="GameStudio.Secrets.Azure" Version="1.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GameStudio-Net\Cloud\GameStudio.Cloud.Aws\GameStudio.Cloud.Aws.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\HealthChecks\GameStudio.HealthChecks.Dns\GameStudio.HealthChecks.Dns.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\HealthChecks\GameStudio.HealthChecks.Http\GameStudio.HealthChecks.Http.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\HealthChecks\GameStudio.HealthChecks.Mongo\GameStudio.HealthChecks.Mongo.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\Metrics\GameStudio.Metrics.Prometheus\GameStudio.Metrics.Prometheus.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\GameStudio\GameStudio.Extensions\GameStudio.Extensions.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\Secrets\GameStudio.Secrets.Aws\GameStudio.Secrets.Aws.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\WebApi\GameStudio.WebApi.Convention\GameStudio.WebApi.Convention.csproj" />
+    <ProjectReference Include="..\GameStudio.Games.Repository.Mongo\GameStudio.Games.Repository.Mongo.csproj" />
+    <ProjectReference Include="..\GameStudio.Games\GameStudio.Games.csproj" />
+  </ItemGroup>
+
+  <!-- Copy Xml Docs / pdb -->
+  <!-- https://github.com/dotnet/sdk/issues/1458 -->
+  <Target Name="_ResolveCopyLocalNuGetPackagePdbsAndXml" Condition="$(CopyLocalLockFileAssemblies) == true" AfterTargets="ResolveReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths->'%(RootDir)%(Directory)%(Filename).pdb')" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' != '' and Exists('%(RootDir)%(Directory)%(Filename).pdb') &#xD;&#xA;                   and $([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)','GameStudio*'))" />
+      <ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths->'%(RootDir)%(Directory)%(Filename).xml')" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' != '' and Exists('%(RootDir)%(Directory)%(Filename).xml') &#xD;&#xA;                   and $([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)','GameStudio*'))" />
+    </ItemGroup>
+  </Target>
+
+  <!-- Publish Xml Docs / pdb -->
+  <!-- https://github.com/dotnet/sdk/issues/1458 -->
+  <Target Name="CopyXmlDocumentationToOutput" AfterTargets="CoreCompile">
+    <ItemGroup>
+      <__XmlDocumentationFiles Include="@(ReferencePathWithRefAssemblies->'%(Identity)')" Condition="Exists($([System.IO.Path]::ChangeExtension(%(Identity), '.xml'))) and $([System.Text.RegularExpressions.Regex]::IsMatch('%(Identity)','GameStudio*'))">
+        <XmlDocumentationPath>$([System.IO.Path]::ChangeExtension(%(Identity), '.xml'))</XmlDocumentationPath>
+      </__XmlDocumentationFiles>
+    </ItemGroup>
+    <ItemGroup>
+      <__XmlDocumentationFiles Include="@(ReferencePathWithRefAssemblies->'%(Identity)')" Condition="Exists($([System.IO.Path]::ChangeExtension(%(Identity), '.pdb'))) and $([System.Text.RegularExpressions.Regex]::IsMatch('%(Identity)','GameStudio*'))">
+        <XmlDocumentationPath>$([System.IO.Path]::ChangeExtension(%(Identity), '.pdb'))</XmlDocumentationPath>
+      </__XmlDocumentationFiles>
+    </ItemGroup>
+
+    <Copy SourceFiles="@(__XmlDocumentationFiles->'%(XmlDocumentationPath)')" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Configurations>MVM-Debug;MVM-Release;PSA-Debug;PSA-Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'MVM-Debug'">
+    <DefineConstants>DEBUG;TRACE;AWS;MVM</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'MVM-Release'">
+    <DefineConstants>AWS;MVM</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'PSA-Debug'">
+    <DefineConstants>DEBUG;TRACE;AZURE;PSA</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'PSA-Release'">
+    <DefineConstants>AZURE;PSA</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="Pathoschild.Http.FluentClient" Version="3.2.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GameStudio-Net\Metrics\GameStudio.Metrics.Null\GameStudio.Metrics.Null.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\Metrics\GameStudio.Metrics.Prometheus\GameStudio.Metrics.Prometheus.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\GameStudio\GameStudio.Extensions\GameStudio.Extensions.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\Repositories\GameStudio.Repository.Document.Mongo\GameStudio.Repository.Document.Mongo.csproj" />
+    <ProjectReference Include="..\..\..\GameStudio-Net\WebApi\GameStudio.WebApi\GameStudio.WebApi.csproj" />
+    <ProjectReference Include="..\..\src\GameStudio.Games.Repository.Mongo\GameStudio.Games.Repository.Mongo.csproj" />
+    <ProjectReference Include="..\..\src\GameStudio.Games.WebApi\GameStudio.Games.WebApi.csproj" />
+    <ProjectReference Include="..\..\src\GameStudio.Games\GameStudio.Games.csproj" />
+  </ItemGroup>
+
+</Project>

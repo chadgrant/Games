@@ -1,0 +1,108 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStudio.Games", "GameStudio.Games\GameStudio.Games.csproj", "{82ED4EBF-72C4-4A1B-A9DD-BCCCAFEED446}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStudio.Games.Tests", "..\tests\GameStudio.Games.Tests\GameStudio.Games.Tests.csproj", "{40D615A0-6BC3-4AF1-81AF-66B593C6D3C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D88DC4F3-0731-4758-B80C-BC7361F3422C}"
+	ProjectSection(SolutionItems) = preProject
+		..\.dockerignore = ..\.dockerignore
+		..\.gitignore = ..\.gitignore
+		..\docker-compose.yml = ..\docker-compose.yml
+		..\Dockerfile = ..\Dockerfile
+		..\infra-compose.yml = ..\infra-compose.yml
+		Local.testsettings = Local.testsettings
+		..\makefile = ..\makefile
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStudio.Games.Repository.Mongo", "GameStudio.Games.Repository.Mongo\GameStudio.Games.Repository.Mongo.csproj", "{DF005FBB-D15D-43C8-8539-5B0408D5B545}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prometheus", "Prometheus", "{38B6A165-7427-4268-96B5-EAD530173ECB}"
+	ProjectSection(SolutionItems) = preProject
+		..\monitoring\prometheus\prometheus.yml = ..\monitoring\prometheus\prometheus.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Grafana", "Grafana", "{19DB9A78-DE01-4D59-9233-D22BFE6D7DDA}"
+	ProjectSection(SolutionItems) = preProject
+		..\monitoring\grafana\dashboards\dashboard.yaml = ..\monitoring\grafana\dashboards\dashboard.yaml
+		..\monitoring\grafana\datasources\prometheus.yaml = ..\monitoring\grafana\datasources\prometheus.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dashboards", "dashboards", "{8B08DE6A-D112-48C6-8DEB-565549B64335}"
+	ProjectSection(SolutionItems) = preProject
+		..\monitoring\grafana\dashboards\controllers.json = ..\monitoring\grafana\dashboards\controllers.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3E4886D9-5BE3-4C4C-93FC-B520AD56A201}"
+	ProjectSection(SolutionItems) = preProject
+		..\tests\Dockerfile = ..\tests\Dockerfile
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStudio.Games.WebApi", "GameStudio.Games.WebApi\GameStudio.Games.WebApi.csproj", "{D1D90F8E-FB5C-4640-AD22-0031AA36F869}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		MVM-Debug|Any CPU = MVM-Debug|Any CPU
+		MVM-Release|Any CPU = MVM-Release|Any CPU
+		PSA-Debug|Any CPU = PSA-Debug|Any CPU
+		PSA-Release|Any CPU = PSA-Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82ED4EBF-72C4-4A1B-A9DD-BCCCAFEED446}.MVM-Debug|Any CPU.ActiveCfg = MVM-Debug|Any CPU
+		{82ED4EBF-72C4-4A1B-A9DD-BCCCAFEED446}.MVM-Debug|Any CPU.Build.0 = MVM-Debug|Any CPU
+		{82ED4EBF-72C4-4A1B-A9DD-BCCCAFEED446}.MVM-Release|Any CPU.ActiveCfg = MVM-Release|Any CPU
+		{82ED4EBF-72C4-4A1B-A9DD-BCCCAFEED446}.MVM-Release|Any CPU.Build.0 = MVM-Release|Any CPU
+		{82ED4EBF-72C4-4A1B-A9DD-BCCCAFEED446}.PSA-Debug|Any CPU.ActiveCfg = PSA-Debug|Any CPU
+		{82ED4EBF-72C4-4A1B-A9DD-BCCCAFEED446}.PSA-Debug|Any CPU.Build.0 = PSA-Debug|Any CPU
+		{82ED4EBF-72C4-4A1B-A9DD-BCCCAFEED446}.PSA-Release|Any CPU.ActiveCfg = PSA-Release|Any CPU
+		{82ED4EBF-72C4-4A1B-A9DD-BCCCAFEED446}.PSA-Release|Any CPU.Build.0 = PSA-Release|Any CPU
+		{40D615A0-6BC3-4AF1-81AF-66B593C6D3C0}.MVM-Debug|Any CPU.ActiveCfg = MVM-Debug|Any CPU
+		{40D615A0-6BC3-4AF1-81AF-66B593C6D3C0}.MVM-Debug|Any CPU.Build.0 = MVM-Debug|Any CPU
+		{40D615A0-6BC3-4AF1-81AF-66B593C6D3C0}.MVM-Release|Any CPU.ActiveCfg = MVM-Release|Any CPU
+		{40D615A0-6BC3-4AF1-81AF-66B593C6D3C0}.MVM-Release|Any CPU.Build.0 = MVM-Release|Any CPU
+		{40D615A0-6BC3-4AF1-81AF-66B593C6D3C0}.PSA-Debug|Any CPU.ActiveCfg = PSA-Debug|Any CPU
+		{40D615A0-6BC3-4AF1-81AF-66B593C6D3C0}.PSA-Debug|Any CPU.Build.0 = PSA-Debug|Any CPU
+		{40D615A0-6BC3-4AF1-81AF-66B593C6D3C0}.PSA-Release|Any CPU.ActiveCfg = PSA-Release|Any CPU
+		{40D615A0-6BC3-4AF1-81AF-66B593C6D3C0}.PSA-Release|Any CPU.Build.0 = PSA-Release|Any CPU
+		{C4C29E60-88A6-4B9B-951F-15A78334A4C4}.MVM-Debug|Any CPU.ActiveCfg = MVM-Debug|Any CPU
+		{C4C29E60-88A6-4B9B-951F-15A78334A4C4}.MVM-Debug|Any CPU.Build.0 = MVM-Debug|Any CPU
+		{C4C29E60-88A6-4B9B-951F-15A78334A4C4}.MVM-Release|Any CPU.ActiveCfg = MVM-Release|Any CPU
+		{C4C29E60-88A6-4B9B-951F-15A78334A4C4}.MVM-Release|Any CPU.Build.0 = MVM-Release|Any CPU
+		{C4C29E60-88A6-4B9B-951F-15A78334A4C4}.PSA-Debug|Any CPU.ActiveCfg = PSA-Debug|Any CPU
+		{C4C29E60-88A6-4B9B-951F-15A78334A4C4}.PSA-Debug|Any CPU.Build.0 = PSA-Debug|Any CPU
+		{C4C29E60-88A6-4B9B-951F-15A78334A4C4}.PSA-Release|Any CPU.ActiveCfg = PSA-Release|Any CPU
+		{C4C29E60-88A6-4B9B-951F-15A78334A4C4}.PSA-Release|Any CPU.Build.0 = PSA-Release|Any CPU
+		{DF005FBB-D15D-43C8-8539-5B0408D5B545}.MVM-Debug|Any CPU.ActiveCfg = MVM-Debug|Any CPU
+		{DF005FBB-D15D-43C8-8539-5B0408D5B545}.MVM-Debug|Any CPU.Build.0 = MVM-Debug|Any CPU
+		{DF005FBB-D15D-43C8-8539-5B0408D5B545}.MVM-Release|Any CPU.ActiveCfg = MVM-Release|Any CPU
+		{DF005FBB-D15D-43C8-8539-5B0408D5B545}.MVM-Release|Any CPU.Build.0 = MVM-Release|Any CPU
+		{DF005FBB-D15D-43C8-8539-5B0408D5B545}.PSA-Debug|Any CPU.ActiveCfg = PSA-Debug|Any CPU
+		{DF005FBB-D15D-43C8-8539-5B0408D5B545}.PSA-Debug|Any CPU.Build.0 = PSA-Debug|Any CPU
+		{DF005FBB-D15D-43C8-8539-5B0408D5B545}.PSA-Release|Any CPU.ActiveCfg = PSA-Release|Any CPU
+		{DF005FBB-D15D-43C8-8539-5B0408D5B545}.PSA-Release|Any CPU.Build.0 = PSA-Release|Any CPU
+		{D1D90F8E-FB5C-4640-AD22-0031AA36F869}.MVM-Debug|Any CPU.ActiveCfg = MVM-Debug|Any CPU
+		{D1D90F8E-FB5C-4640-AD22-0031AA36F869}.MVM-Debug|Any CPU.Build.0 = MVM-Debug|Any CPU
+		{D1D90F8E-FB5C-4640-AD22-0031AA36F869}.MVM-Release|Any CPU.ActiveCfg = MVM-Release|Any CPU
+		{D1D90F8E-FB5C-4640-AD22-0031AA36F869}.MVM-Release|Any CPU.Build.0 = MVM-Release|Any CPU
+		{D1D90F8E-FB5C-4640-AD22-0031AA36F869}.PSA-Debug|Any CPU.ActiveCfg = PSA-Debug|Any CPU
+		{D1D90F8E-FB5C-4640-AD22-0031AA36F869}.PSA-Debug|Any CPU.Build.0 = PSA-Debug|Any CPU
+		{D1D90F8E-FB5C-4640-AD22-0031AA36F869}.PSA-Release|Any CPU.ActiveCfg = PSA-Release|Any CPU
+		{D1D90F8E-FB5C-4640-AD22-0031AA36F869}.PSA-Release|Any CPU.Build.0 = PSA-Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38B6A165-7427-4268-96B5-EAD530173ECB} = {D88DC4F3-0731-4758-B80C-BC7361F3422C}
+		{19DB9A78-DE01-4D59-9233-D22BFE6D7DDA} = {D88DC4F3-0731-4758-B80C-BC7361F3422C}
+		{8B08DE6A-D112-48C6-8DEB-565549B64335} = {19DB9A78-DE01-4D59-9233-D22BFE6D7DDA}
+		{3E4886D9-5BE3-4C4C-93FC-B520AD56A201} = {D88DC4F3-0731-4758-B80C-BC7361F3422C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D289C176-103A-456A-83D9-FD052AAB6BB8}
+	EndGlobalSection
+EndGlobal

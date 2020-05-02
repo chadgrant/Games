@@ -1,0 +1,22 @@
+version: '3.4'
+
+volumes:
+  mongo_data: {}
+
+services:
+
+  mongo:
+    image: chadgrant/games_mongo:3.4
+    build:
+      context: data
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+      - 27018:27018
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: docker
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: games

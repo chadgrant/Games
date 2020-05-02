@@ -1,0 +1,1 @@
+FROM playstudios/dotnet:2.2-test
