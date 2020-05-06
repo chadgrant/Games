@@ -1,1 +1,1 @@
-FROM playstudios/mongo:3.4
+FROM chadgrant/mongo:3.4

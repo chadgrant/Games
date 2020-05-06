@@ -66,7 +66,7 @@ namespace GameStudio.Games.WebApi
 				Title = $"Games API {version.ApiVersion}",
 				Version = version.ApiVersion.ToString(),
 				Description = "A sample application with Swagger, Swashbuckle, and API versioning.",
-				Contact = new ApiContact { Name = "Chad Grant", Email = "chadg@playstudios.com" }
+				Contact = new ApiContact { Name = "Chad Grant", Email = "cgrant@studio.com" }
 			};
 		}
 
